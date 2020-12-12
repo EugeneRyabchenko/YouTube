@@ -1,1 +1,12 @@
-<p>videos works!</p>
+<div class="card" >
+    {{evaItem}}
+    
+</div>    
+    
+<!--<button class="btn btn-primary" (click)="onClickButton()">Button number two</button>-->
+
+<div class="container">
+<app-video-list-element *ngFor="let v of videos" [video] = "v" (clickVideoItem) = "onClick($event)">
+   
+</app-video-list-element>
+</div>

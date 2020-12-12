@@ -1,8 +1,13 @@
 <div>
   <div>My message is: {{textVariable}}</div>
   <div *ngIf="textCondition">This is a conditional message.</div>
-  <div *ngFor="let el of ayanamiArray; let i=index">{{i}}{{el}}</div>
+  <div *ngFor="let el of ayanamiArray; let i=index">
+    {{i}}
+  </div>
   <div>{{now}}</div>
   <button class="btn btn-primary" (click)="onClickButton($event)">TIME TELLS NO LIES</button>
+  
+  <app-videos (clickEvaItem) = "onClickEvaItem($event)"> </app-videos>
+  
 </div>
 <!--<router-outlet></router-outlet> -->

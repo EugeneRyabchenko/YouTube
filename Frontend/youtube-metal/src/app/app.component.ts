@@ -18,4 +18,9 @@ export class AppComponent {
    this.now = new Date()
    console.log(this.now)
  }
+
+ public onClickEvaItem(evaItem: string): void{
+   console.log(evaItem)
+ }
+
 }
