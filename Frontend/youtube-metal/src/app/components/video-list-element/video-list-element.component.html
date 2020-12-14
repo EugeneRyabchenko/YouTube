@@ -1,5 +1,14 @@
 
-<div (click)="onClickButton()" class="row video-row" >
-    <div class="col-1">{{video?.id}}</div>
-    <div class="col">{{video?.name}}</div>
+
+<div (click)="onClickButton()" class="row video-row p-2" >
+  <div class="col-xs-1 d-flex align-items-center" > 
+    <button class="button button5">
+     {{video?.id}}
+    </button>
+    <div class="col-4">
+        <img [src]="video?.thumbnailURL" class="img-thumbnail border-danger">
+    </div>
+    <div class="col-2 d-flex align-items-center">{{video?.name}}</div>
+</div>
+
 </div>
