@@ -8,20 +8,29 @@ import { VideosComponent } from './components/videos/videos.component';
 import { VideoListElementComponent } from './components/video-list-element/video-list-element.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { VideoService } from './services/video-service';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { TopMenu } from './components/top-menu/top-menu.component';
+import { UserStore } from './stores/user-store';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    TopMenu,
     VideosComponent,
     VideoListElementComponent,
-    VideoDetailsComponent
+    VideoDetailsComponent,
+    UserRegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
-  providers: [VideoService],
+  providers: [VideoService, UserStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

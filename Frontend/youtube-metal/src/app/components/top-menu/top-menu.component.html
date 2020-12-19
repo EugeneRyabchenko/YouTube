@@ -1,0 +1,5 @@
+<div class="d-flex justify-content-end">
+
+    <button *ngIf="!!user" class="btn btn-success" (click)="editAccount()">Hello, {{user.getFullName()}}!</button>
+    <button *ngIf="!user" class="btn btn-primary" (click)="editAccount()">YOU'RE NOTHING</button>
+</div>

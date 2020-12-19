@@ -1,5 +1,7 @@
 .bg{
     background-image: url("/assets/YOUTUBE (winter).jpg");
+
+    /* Full height */
     height: 100%;
   
     /* Center and scale the image nicely */
@@ -9,4 +11,4 @@
 
     backdrop-filter: blur(10px);
 
-}
+  }
