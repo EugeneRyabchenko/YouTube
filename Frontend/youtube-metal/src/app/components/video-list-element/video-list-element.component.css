@@ -6,14 +6,36 @@
     background-color: #ff0000;
     border: none;
     color: rgb(0, 0, 0);
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 80px;
+    margin: 3px 3px;
+    border-radius: 50%;
   }
 
-  .button5 {border-radius: 50%;}
 
-  
+  .video-description-skip-line
+  {
+      white-space: pre-line;
+  }
+
+  .overflow {
+    overflow: auto;
+    height: 173.5px;
+
+  }
+
+  ._img-col {
+      padding-left: 0px;
+      padding-right: 0px;
+  }
+
+  ._img-thumbnail {
+      max-width: 100%;
+  }
+
+  ._description-col {
+      padding-right: 0px;
+  }

@@ -1,14 +1,36 @@
+<div class="row border-bottom _custom-border">
+  <div class="col-1 d-flex align-items-center justify-content-center border-right _custom-border bg-secondary">
+    <h1> {{video?.id}} </h1>
+    <!--  <button class="button">
+      {{video?.id}}
+    </button> -->
+  </div>
 
+  <div class="col-4 d-flex justify-content-start _img-col border-right _custom-border">
+    <img [src]="video?.thumbnailURL" class="_img-thumbnail">
+  </div>
 
-<div (click)="onClickButton()" class="row video-row p-2" >
-  <div class="col-xs-1 d-flex align-items-center" > 
-    <button class="button button5">
-     {{video?.id}}
-    </button>
-    <div class="col-4">
-        <img [src]="video?.thumbnailURL" class="img-thumbnail border-danger">
+  <div class="col-7">
+    <div class="row ">
+      <div class="col-12 _description-col bg-secondary">
+        <div class="video-description-skip-line ">
+          <div class="overflow" >
+            <h5>
+            {{video?.description}}
+          </h5>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-2 d-flex align-items-center">{{video?.name}}</div>
-</div>
+    <div class="row">
+      <div class="col-12 d-flex align-items-end bg-secondary">
+        <div (click)="onClickButton()">
+          <button type="button" class="btn btn-success">
+            <div class="font-weight-bold mb-0">EDIT</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

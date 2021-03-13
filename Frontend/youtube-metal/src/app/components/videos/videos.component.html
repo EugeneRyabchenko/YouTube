@@ -1,20 +1,49 @@
-
 <div class="container-fuid">
 
-<div class="bg" style="min-height: 100px"></div>
-    
-<!--<div class="card" >
+   <!-- <img src="../../assets/YOUTUBE_(winter).jpg" class="img-thumbnail border-danger">-->
+
+    <div class="bg" style="min-height: 100px"></div>
+
+    <!--<div class="card" >
     {{evaItem}}
     
-</div>   --> 
+</div>   -->
 
+    <div class="container border-right border-left border-top _custom-border">
 
+        <div class="row border-bottom _custom-border bg-secondary" >
+            <div class="col-1 border-right _custom-border">
+               <h4> # </h4>
+            </div>
+            <div class="col-4 border-right _custom-border bg-secondary">
+               <h4> Thumbnail </h4>
+            </div>
+            <div class="col-7 bg-secondary">
+                <h4> DESCRIPTION </h4>
+            </div>
+        </div>
+        <ng-container *ngFor="let v of videos">
+            <app-video-list-element [video]="v" (clickVideoItem)="onClick($event)">
+            </app-video-list-element>
+        </ng-container>
 
-<div class="container table" >
-<app-video-list-element *ngFor="let v of videos" [video] = "v" (clickVideoItem) = "onClick($event)">
-    
-</app-video-list-element>
-</div>
-<!--<img class="logo" src="assets/ThruOurScarsTH.jpg">-->
+    </div>
+
+    <!--
+            <app-video-list-element *ngFor="let v of videos" [video]="v.id" (clickVideoItem)="onClick($event)">
+            </app-video-list-element>
+        </td>
+        <td>
+            <app-video-list-element *ngFor="let v of videos" [video]="v.name" (clickVideoItem)="onClick($event)">
+            </app-video-list-element>
+        </td>
+        <td>
+            <app-video-list-element *ngFor="let v of videos" [video]="v.thumbnailURL" (clickVideoItem)="onClick($event)">
+            </app-video-list-element>
+        </td>
+        <td>
+            <app-video-list-element *ngFor="let v of videos" [video]="v.description" (clickVideoItem)="onClick($event)">
+            </app-video-list-element>-->
+
 
 </div>
