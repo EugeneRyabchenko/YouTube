@@ -1,8 +1,41 @@
-<div class="bg">
 <div class="container">
-    <h1 style="color: aliceblue;">
-{{video.name}}
-</h1>
-<img [src]="video?.thumbnailURL" style="width:60%;height:60%">
-</div>
+    <div class="row justify-content-between">
+        <div class="col-3">
+            <div>
+                <img [src]="video?.thumbnailURL" style="height: 235px; width:auto">
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="row">
+                <div class="justify-content-start">
+                    <h1 style="color: rgb(0, 0, 0);">
+                     <!--   <app-save-video-properties-confirmation [editedTitle]="video?.editedTitle"></app-save-video-properties-confirmation>-->
+                        <input type="text" autofocus style="font-size: 30pt" maxlength="50" [(ngModel)]=editedTitle
+                            placeholder="Video Title">
+                           
+                        <h6>(max 50 characters)</h6>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class=col>
+                        <div class="video-description-skip-line ">
+                            <div class="overflow">
+                                <textarea [(ngModel)]=editedDescription cols=80 rows=6 placeholder="Video Description">
+                    </textarea>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                        <div class=col-2>
+                        <button class="btn btn-success" (click)="onClickSave()"> SAVE </button>
+                    </div>
+                   
+                    <div class=col-2>
+                        <button class="btn btn-danger" (click)="onClickBack()" > BACK</button>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

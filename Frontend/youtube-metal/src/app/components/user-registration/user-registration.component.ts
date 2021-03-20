@@ -22,6 +22,7 @@ export class UserRegistrationComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  
 
   public onSave(){
       console.log("onSave", this.userName, this.firstName, this.lastName)

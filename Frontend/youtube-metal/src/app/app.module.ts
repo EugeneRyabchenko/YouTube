@@ -13,14 +13,19 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { TopMenu } from './components/top-menu/top-menu.component';
 import { UserStore } from './stores/user-store';
+import { VideoPreviewComponent } from './components/video-preview/video-preview.component';
+import { ConfirmationModal } from './components/confirmation-modal/confirmation-modal.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ConfirmationModal,
     TopMenu,
     VideosComponent,
     VideoListElementComponent,
+    VideoPreviewComponent,
     VideoDetailsComponent,
     UserRegistrationComponent
   ],

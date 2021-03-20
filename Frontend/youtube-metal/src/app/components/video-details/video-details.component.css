@@ -10,3 +10,15 @@
     backdrop-filter: blur(10px);
 
 }
+
+
+.video-description-skip-line
+{
+    white-space: pre-line;
+}
+
+.overflow {
+  overflow: auto;
+  height: 173.5px;
+
+}

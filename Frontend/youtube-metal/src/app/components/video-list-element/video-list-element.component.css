@@ -23,7 +23,7 @@
 
   .overflow {
     overflow: auto;
-    height: 173.5px;
+    height: 180px;
 
   }
 
@@ -38,4 +38,12 @@
 
   ._description-col {
       padding-right: 0px;
+      margin: auto;
+  }
+
+  ._text-stroke {
+      -webkit-text-fill-color:rgb(255, 255, 255);
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: rgb(0, 0, 0);
+     
   }

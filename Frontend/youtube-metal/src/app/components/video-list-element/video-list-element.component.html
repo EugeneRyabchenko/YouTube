@@ -6,25 +6,37 @@
     </button> -->
   </div>
 
-  <div class="col-4 d-flex justify-content-start _img-col border-right _custom-border">
-    <img [src]="video?.thumbnailURL" class="_img-thumbnail">
+  <div class="col-5 d-flex justify-content-start _img-col border-right _custom-border">
+    <button>
+      <div (click)="onClickButtonThumb()">
+        <img [src]="video?.thumbnailURL" class="_img-thumbnail">
+      </div>
+    </button>
   </div>
-
-  <div class="col-7">
-    <div class="row ">
-      <div class="col-12 _description-col bg-secondary">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-12 bg-secondary">
+        <div class="row _description-col d-flex justify-content-start">
+          <h2 class=" _text-stroke">
+             {{video?.title}}
+          </h2>
+        </div>
+        <div class=" bg-secondary">
         <div class="video-description-skip-line ">
-          <div class="overflow" >
-            <h5>
-            {{video?.description}}
-          </h5>
+          <div class="overflow">
+            <div class="row _description-col d-flex justify-content-start">
+              <h5>
+                {{video?.description}}
+              </h5>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 d-flex align-items-end bg-secondary">
-        <div (click)="onClickButton()">
+        <div (click)="onClickButtonEdit()">
           <button type="button" class="btn btn-success">
             <div class="font-weight-bold mb-0">EDIT</div>
           </button>
