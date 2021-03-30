@@ -16,11 +16,16 @@
 
             </div>
             <div class="col-6 bg-secondary">
-                <h4> TITLE/DESCRIPTION </h4>
+                <h4> Title/Description </h4>
             </div>
         </div>
 
-        <ng-container *ngFor="let v of videos">
+   <!--    <ng-container *ngFor="let v of videos">
+            <app-video-list-element [video]="v" (clickVideoItemEdit)="onClickEdit($event)">
+            </app-video-list-element>
+          </ng-container>
+--> 
+          <ng-container *ngFor="let v of videosFromHttp">
             <app-video-list-element [video]="v" (clickVideoItemEdit)="onClickEdit($event)">
             </app-video-list-element>
           </ng-container>

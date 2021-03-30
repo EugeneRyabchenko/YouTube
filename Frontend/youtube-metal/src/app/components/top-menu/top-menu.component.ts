@@ -6,35 +6,34 @@ import { UserStore } from "src/app/stores/user-store";
 import { UserRegistrationComponent } from "../user-registration/user-registration.component";
 
 @Component({
-    selector: 'app-top-menu',
-    templateUrl: './top-menu.component.html',
-    styleUrls: ['./top-menu.component.css']
-  })
+  selector: 'app-top-menu',
+  templateUrl: './top-menu.component.html',
+  styleUrls: ['./top-menu.component.css']
+})
 
-  export class TopMenu implements OnInit, OnDestroy{
-  
-    public user: User
-    private subscription: Subscription = new Subscription()
+export class TopMenu implements OnInit, OnDestroy {
 
-    constructor(private modalService: NgbModal, private userStore: UserStore){
+  public user: User
+  private subscription: Subscription = new Subscription()
 
-    }
+  constructor(private modalService: NgbModal, private userStore: UserStore) {
 
-    ngOnInit(): void {
-         this.subscription.add(
-           this.userStore.user$.subscribe(
-             (user) => { this.user = user}
-          )
-         )
-    }
+  }
 
-      ngOnDestroy(): void{
-        this.subscription.unsubscribe()
-      }
+  ngOnInit(): void {
+    this.subscription.add(
+      this.userStore.user$.subscribe(
+        (u: User) => { this.user = u }
+      )
+    )
+  }
 
-    public editAccount(){
-        const modalRef = this.modalService.open(UserRegistrationComponent)
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
+
+  public editAccount() {
+    const modalRef = this.modalService.open(UserRegistrationComponent)
+  }
 }
 
-  

@@ -5,6 +5,7 @@ import { VideoService } from 'src/app/services/video-service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ConfirmationModal } from '../confirmation-modal/confirmation-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,12 +13,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './video-details.component.html',
   styleUrls: ['./video-details.component.css']
 })
-export class VideoDetailsComponent implements OnInit {
+export class VideoDetailsComponent implements OnInit, OnDestroy {
 
   @Input() public video: Video
   public sanatizedUrl: SafeResourceUrl;
   public editedTitle: string
   public editedDescription: string
+  private subscription: Subscription = new Subscription()
 
   constructor(private modalService: NgbModal, private router: Router, private activatedRoute: ActivatedRoute, private videoService: VideoService) { }
 
@@ -25,10 +27,21 @@ export class VideoDetailsComponent implements OnInit {
   ngOnInit(): void {
     const videoId = +this.activatedRoute.snapshot.paramMap.get("id")
 
-    this.video = this.videoService.getVideoById(videoId)
-    this.editedTitle = this.video.title 
-    this.editedDescription = this.video.description 
+    this.subscription.add(
+      this.videoService.getVideoById(videoId).subscribe(
+        (v) => {
+          this.video = v
+          this.editedTitle = v.title
+          this.editedDescription = v.description
+        }
+      )
+    )
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
+
 
   public onClickBack(): void {
     this.router.navigate(['videos/'])
@@ -45,9 +58,11 @@ export class VideoDetailsComponent implements OnInit {
         thumbnailURL: this.video.thumbnailURL,
         link: this.video.link
       }
-      this.videoService.updateVideo(newVideo)
-      console.log("confirmed!")
+    
+      const video$ = this.videoService.setVideoHttp(newVideo)
+      video$.subscribe((v: Video) => console.log("confirmed! " + v) )
         this.router.navigate(['videos/'])
+
     }
   )
   

@@ -15,6 +15,9 @@ import { TopMenu } from './components/top-menu/top-menu.component';
 import { UserStore } from './stores/user-store';
 import { VideoPreviewComponent } from './components/video-preview/video-preview.component';
 import { ConfirmationModal } from './components/confirmation-modal/confirmation-modal.component';
+import { PrivilegesModal } from './components/privileges-modal.component/privileges-modal.component';
+import { ProgrammingTraining } from './components/programming-training.component/programming-training.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,6 +25,8 @@ import { ConfirmationModal } from './components/confirmation-modal/confirmation-
     AppComponent,
     HomeComponent,
     ConfirmationModal,
+    PrivilegesModal,
+    ProgrammingTraining,
     TopMenu,
     VideosComponent,
     VideoListElementComponent,
@@ -31,6 +36,7 @@ import { ConfirmationModal } from './components/confirmation-modal/confirmation-
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     FormsModule

@@ -1,13 +1,17 @@
 import { ThrowStmt } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { Video } from "../models/video";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class VideoService{
 
-  private video: Video
+  public video: Video
+public videosFromHttp: Video[]
 
-    private videos: Video[] = [
+    private videos: Video[] /*= [
         {id: 1, title: "Thru Our Scars",
         description: `This song and the band's logo are the copyrighted property of their owner(s).
 🎵 Fleshgod Apocalypse's "Thru Our Scars" playthrough by Eugene Ryabchenko (Banisher, Castrum, Fleshgod Apocalypse, Locracy).`,
@@ -53,26 +57,82 @@ Recording and mixig by Eugene and Peter Ryabchenko.`,
         link: "https://www.youtube.com/embed/bdcZJa0obuI?autoplay=1"}
       ]
 
+*/
+
+      constructor(private httpClient: HttpClient) {
+
+      }
+
+        public getVideosHttp(): Observable<Video[]> {       
+            const response$ = this.httpClient.get("http://localhost:8080/api/v1/videos")
+
+            const videos$: Observable<Video[]> = response$.pipe(
+              map((jsonVideoArray: any[]) => {
+                this.videosFromHttp = jsonVideoArray.map((jsonVideo: any) => Video.fromJson(jsonVideo))
+                return this.videosFromHttp
+              })
+            )
+
+            return videos$
+
+        }
+
+        public setVideoHttp(newVideo: Video): Observable<Video>{
+          let v: any = Video.toJson(newVideo)
+          const response$: Observable<Object> = this.httpClient.put("http://localhost:8080/api/v1/videos/"+newVideo.id, v)
+     //     debugger
+          const video$: Observable<Video> = response$.pipe(
+            map((jsonVideo: any) => {
+              const v = Video.fromJson(jsonVideo)
+              return v
+             })
+           )
+      return video$
+        }
+
+
       public getVideos(): Video[]{
-          return this.videos
+          return this.videosFromHttp
       }
 
-      public getVideoById(id: number): Video {
-   
-        return this.videos.find((v: Video) => v.id === id);
-
+      public getVideoById(id: number): Observable<Video> {
+        const response$ = this.httpClient.get("http://localhost:8080/api/v1/videos/"+id)
+      
+        const video$: Observable<Video> = response$.pipe(
+          map((jsonVideo: any) => {
+            const v = Video.fromJson(jsonVideo)
+            return v
+          })
+        )
+          return video$
       }
+
+/*      public getVideobyIdHttp(): Observable<Video[]> {       
+        const response$ = this.httpClient.get("http://localhost:8080/api/v1/videos")
+
+        const videos$: Observable<Video[]> = response$.pipe(
+          map((jsonVideoArray: any[]) => {
+            this.videosFromHttp = jsonVideoArray.map((jsonVideo: any) => Video.fromJson(jsonVideo))
+            return this.videosFromHttp
+          })
+        )
+
+        return videos$
+
+    }*/
+
+
      // updateVideo method can update video title and description
-      public updateVideo(newVideo: Video): void {
+  /*    public updateVideo(newVideo: Video): void {
               console.log(newVideo)
-              for(let i=0; i<this.videos.length; i++){
-                if(newVideo.id === this.videos[i].id){
-                  this.videos[i] = newVideo
-                  console.log(this.videos[i])
+              for(let i=0; i<this.videosFromHttp.length; i++){
+                if(newVideo.id === this.videosFromHttp[i].id){
+                  this.videosFromHttp[i] = newVideo
+                  console.log("front end update: " + this.videosFromHttp[i])
                 }
                 
               }
               
-      }
+                }
 
-    }
+  */   }
