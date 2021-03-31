@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-end">
-
-    <button *ngIf="!!user" class="btn btn-success" (click)="editAccount()">Hello, {{user.getFullName()}}!</button>
-    <button *ngIf="!user" class="btn btn-primary" (click)="editAccount()">YOU'RE NOTHING</button>
+    <button *ngIf="!user" class="btn btn-secondary btn-lg disabled _disabled m-3"aria-disabled="true"  (click)="onClickAddVideo()">ADD VIDEO</button>
+    <button *ngIf="!!user" class="btn btn-success m-3" (click)="onClickAddVideo()">ADD VIDEO</button>
+    <button *ngIf="!user" class="btn btn-primary m-3" (click)="editAccount()">LOG IN</button>
+    <button *ngIf="!!user" class="btn btn-success m-3" (click)="editAccount()">Hello, {{user.getFullName()}}!</button>
 </div>

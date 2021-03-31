@@ -15,27 +15,33 @@ import { Subscription } from 'rxjs';
 })
 export class VideoDetailsComponent implements OnInit, OnDestroy {
 
-  @Input() public video: Video
+
+
+  public video: Video
   public sanatizedUrl: SafeResourceUrl;
   public editedTitle: string
   public editedDescription: string
   private subscription: Subscription = new Subscription()
+  public isNew: boolean
 
   constructor(private modalService: NgbModal, private router: Router, private activatedRoute: ActivatedRoute, private videoService: VideoService) { }
 
 
   ngOnInit(): void {
     const videoId = +this.activatedRoute.snapshot.paramMap.get("id")
+    this.isNew = !videoId
 
-    this.subscription.add(
-      this.videoService.getVideoById(videoId).subscribe(
-        (v) => {
-          this.video = v
-          this.editedTitle = v.title
-          this.editedDescription = v.description
-        }
+    if (!this.isNew) {
+      this.subscription.add(
+        this.videoService.getVideoById(videoId).subscribe(
+          (v) => {
+            this.video = v
+            this.editedTitle = v.title
+            this.editedDescription = v.description
+          }
+        )
       )
-    )
+    }
   }
 
   ngOnDestroy(): void {
@@ -49,22 +55,26 @@ export class VideoDetailsComponent implements OnInit, OnDestroy {
 
   public onClickSave(): void {
     const modalRef = this.modalService.open(ConfirmationModal)
-  modalRef.componentInstance.clickConfirm.subscribe(
-    () => {
-      const newVideo: Video = {
-        id: this.video.id,
-        title: this.editedTitle,
-        description: this.editedDescription,
-        thumbnailURL: this.video.thumbnailURL,
-        link: this.video.link
-      }
-    
-      const video$ = this.videoService.setVideoHttp(newVideo)
-      video$.subscribe((v: Video) => console.log("confirmed! " + v) )
+    modalRef.componentInstance.clickConfirm.subscribe(
+      () => {
+        const newVideo: Video = {
+          id: this.video?.id,
+          title: this.editedTitle,
+          description: this.editedDescription,
+          thumbnailURL: this.video?.thumbnailURL,
+          link: this.video?.link
+        }
+        if (!this.isNew) {
+          const video$ = this.videoService.setVideoHttp(newVideo)
+          video$.subscribe((v: Video) => console.log("confirmed! " + v))
+        } else {
+          const video$ = this.videoService.createVideoHttp(newVideo)
+          video$.subscribe((v: Video) => console.log("new video created: " + v))
+        }
         this.router.navigate(['videos/'])
 
-    }
-  )
-  
+      }
+    )
+
   }
 }

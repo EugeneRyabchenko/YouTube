@@ -28,6 +28,7 @@ export class VideosComponent implements OnInit, OnDestroy {
  // public videos: Video[]
   public video: Video
   public videosFromHttp: Video[]
+  public newVideoIdURL: number = 1
 
   constructor(private modalService: NgbModal, private router: Router, private videoService: VideoService, private userStore: UserStore) {
   }
@@ -49,6 +50,9 @@ export class VideosComponent implements OnInit, OnDestroy {
         (v) => {
           this.videosFromHttp = v,
           console.log ("videosFromHttp: " + v)
+          console.log ("number of videos: " + this.videosFromHttp.length)
+          this.newVideoIdURL = this.videosFromHttp.length + 1
+          console.log ("new video id URL: " + this.newVideoIdURL)
         }
       )
     )
@@ -77,6 +81,15 @@ export class VideosComponent implements OnInit, OnDestroy {
       const modalRef = this.modalService.open(PrivilegesModal)
     }
   }
+
+ // public largestVideoId(): number {
+ //   const largestId: number = 0
+ //   for (let i=0; i < this.videosFromHttp.length; i++){
+//    if (largestId > this.video.id)
+
+//    }
+//    return largestId
+//  }
 
 
 

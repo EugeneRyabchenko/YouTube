@@ -22,7 +22,7 @@
             video_name: video.title,
             video_description: video.description,
             thumbnail_URL: video.thumbnailURL,
-            video_URL: video.link,
+            video_URL: !!video.link ? video.link : "www.youtube.com/c/EugeneRyabchenko666/videos",
             publish_date: new Date()
         }
         return a

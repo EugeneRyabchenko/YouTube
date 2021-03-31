@@ -90,6 +90,19 @@ Recording and mixig by Eugene and Peter Ryabchenko.`,
       return video$
         }
 
+        public createVideoHttp(newVideo: Video): Observable<Video>{
+            let v: any = Video.toJson(newVideo)
+              const response$: Observable<Object> = this.httpClient.post("http://localhost:8080/api/v1/videos", v)
+           //     debugger
+           const video$: Observable<Video> = response$.pipe(
+            map((jsonVideo: any) => {
+              const v = Video.fromJson(jsonVideo)
+              return v
+             })
+           )
+            return video$
+        }
+
 
       public getVideos(): Video[]{
           return this.videosFromHttp
