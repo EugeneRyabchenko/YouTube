@@ -18,6 +18,7 @@ import { ConfirmationModal } from './components/confirmation-modal/confirmation-
 import { PrivilegesModal } from './components/privileges-modal.component/privileges-modal.component';
 import { ProgrammingTraining } from './components/programming-training.component/programming-training.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoutingService } from './services/routing-service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     FormsModule
   ],
-  providers: [VideoService, UserStore],
+  providers: [RoutingService, VideoService, UserStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,8 +4,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { User } from "src/app/models/user";
 import { Video } from 'src/app/models/video';
+import { RoutingService } from 'src/app/services/routing-service';
 import { VideoService } from 'src/app/services/video-service';
 import { UserStore } from 'src/app/stores/user-store';
+import { ConfirmationModal } from '../confirmation-modal/confirmation-modal.component';
 import { PrivilegesModal } from '../privileges-modal.component/privileges-modal.component';
 
 @Component({
@@ -30,7 +32,7 @@ export class VideosComponent implements OnInit, OnDestroy {
   public videosFromHttp: Video[]
   public newVideoIdURL: number = 1
 
-  constructor(private modalService: NgbModal, private router: Router, private videoService: VideoService, private userStore: UserStore) {
+  constructor(private modalService: NgbModal, private router: Router, private videoService: VideoService, private userStore: UserStore, private routingServie: RoutingService) {
   }
 
   ngOnInit(): void {
@@ -55,9 +57,7 @@ export class VideosComponent implements OnInit, OnDestroy {
           console.log ("new video id URL: " + this.newVideoIdURL)
         }
       )
-    )
-
-  
+    ) 
   }
 
 
@@ -82,14 +82,27 @@ export class VideosComponent implements OnInit, OnDestroy {
     }
   }
 
- // public largestVideoId(): number {
- //   const largestId: number = 0
- //   for (let i=0; i < this.videosFromHttp.length; i++){
-//    if (largestId > this.video.id)
-
-//    }
-//    return largestId
-//  }
+  public onClickDelete(id: number): void {
+    if (this.user
+      && this.admin.firstName === this.user.firstName
+      && this.admin.lastName === this.user.lastName
+      && this.admin.userName === this.user.userName
+    ) {
+      const modalRef = this.modalService.open(ConfirmationModal)
+    modalRef.componentInstance.clickConfirm.subscribe(
+      () => {
+        this.videoService.deleteVideoHttp(id).subscribe(() => {
+          console.log ("Video successfully deleted " + id)
+          this.routingServie.reloadCurrentUrl('videos')
+        })
+      }
+    )
+     }
+    else
+     {
+      const modalRef = this.modalService.open(PrivilegesModal)
+    }
+  }
 
 
 

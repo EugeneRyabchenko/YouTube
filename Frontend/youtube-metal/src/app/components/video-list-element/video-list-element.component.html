@@ -18,31 +18,37 @@
       <div class="col-12 bg-secondary">
         <div class="row _description-col d-flex justify-content-start">
           <h2 class=" _text-stroke">
-             {{video?.title}}
+            {{video?.title}}
           </h2>
         </div>
         <div class=" bg-secondary">
-        <div class="video-description-skip-line ">
-          <div class="overflow">
-            <div class="row _description-col d-flex justify-content-start">
-              <h5>
-                {{video?.description}}
-              </h5>
+          <div class="video-description-skip-line ">
+            <div class="overflow">
+              <div class="row _description-col d-flex justify-content-start">
+                <h5>
+                  {{video?.description}}
+                </h5>
+              </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 d-flex align-items-end bg-secondary">
-        <div (click)="onClickButtonEdit()">
-          <button type="button" class="btn btn-success">
-            <div class="font-weight-bold mb-0">EDIT</div>
-          </button>
+    <div class="row d-flex justify-content-between bg-secondary">
+        <div class="col d-flex justify-content-start">
+          <div (click)="onClickButtonEdit()">
+            <button type="button" class="btn btn-success">
+              <div class="font-weight-bold mb-0">EDIT</div>
+            </button>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <div (click)="onClickButtonDelete()">
+            <button type="button" class="btn btn-danger">
+              <div class="font-weight-bold mb-0">DELETE</div>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
   </div>
-
 </div>

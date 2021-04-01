@@ -4,10 +4,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProgrammingTraining } from './components/programming-training.component/programming-training.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { EmptyComponent } from './components/util/empty/empty.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { VideosComponent } from './components/videos/videos.component';
 
 const routes: Routes = [
+  { path: 'empty', component: EmptyComponent},
   { path: '', component: HomeComponent, 
     children: [
       { path: 'videos', component: VideosComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
       
     ]
   },
+ 
 ];
 
 @NgModule({

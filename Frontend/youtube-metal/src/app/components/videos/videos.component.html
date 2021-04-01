@@ -20,13 +20,10 @@
             </div>
         </div>
 
-   <!--    <ng-container *ngFor="let v of videos">
-            <app-video-list-element [video]="v" (clickVideoItemEdit)="onClickEdit($event)">
-            </app-video-list-element>
-          </ng-container>
---> 
           <ng-container *ngFor="let v of videosFromHttp">
-            <app-video-list-element [video]="v" (clickVideoItemEdit)="onClickEdit($event)">
+            <app-video-list-element [video]="v"
+            (clickVideoItemEdit)="onClickEdit($event)"
+            (clickVideoItemDelete)="onClickDelete($event)">
             </app-video-list-element>
           </ng-container>
 

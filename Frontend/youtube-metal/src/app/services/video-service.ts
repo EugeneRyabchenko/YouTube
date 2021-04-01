@@ -103,6 +103,15 @@ Recording and mixig by Eugene and Peter Ryabchenko.`,
             return video$
         }
 
+        public deleteVideoHttp(id: number): Observable<void> {     
+          const response$ = this.httpClient.delete("http://localhost:8080/api/v1/videos/"+id)
+          const video$: Observable<void> = response$.pipe(
+            map(() => {return})
+          )
+          return video$
+
+      }
+
 
       public getVideos(): Video[]{
           return this.videosFromHttp

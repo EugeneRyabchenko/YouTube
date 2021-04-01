@@ -15,6 +15,8 @@ export class VideoListElementComponent implements OnInit {
   @Output()
   public clickVideoItemEdit: EventEmitter<number> = new EventEmitter<number>()
   public clickVideoItemThumb: EventEmitter<string> = new EventEmitter<string>()
+  @Output()
+  public clickVideoItemDelete: EventEmitter<number> = new EventEmitter<number>()
   private currentLink: string
 
   constructor(private modalService: NgbModal) { }
@@ -40,5 +42,9 @@ export class VideoListElementComponent implements OnInit {
      return this.currentLink
    }
 
+   public onClickButtonDelete(): void {
+    this.clickVideoItemDelete.emit(this.video.id)
+    console.log(this.video.id)
+   }
    
 }
